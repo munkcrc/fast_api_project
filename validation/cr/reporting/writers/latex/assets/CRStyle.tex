@@ -1,0 +1,75 @@
+% SET COLORS
+\definecolor{crhighlight}{RGB}{255, 106, 112}
+\definecolor{crdark}{RGB}{4, 54, 70}
+\definecolor{crdarktext}{RGB}{128, 155, 164}
+\definecolor{crwhite}{RGB}{242, 238, 235}
+
+% Set bullet icon
+\renewcommand\labelitemi{\textcolor{crhighlight}{\textbullet}}
+
+% Remove bullet indent
+\setlist[itemize]{leftmargin=*}
+
+% Redefine equation with parenthesis
+\renewcommand{\eqref}[1]{(\ref{#1})}
+
+% SET FONTS
+\renewcommand{\familydefault}{\sfdefault}
+
+\newfontfamily\titlefont[
+BoldFont=Barlow-Bold.ttf,
+LetterSpace=1.5,
+WordSpace=1.5
+]{Barlow-Bold.ttf}
+
+% SET CHAPTER STYLE
+\titleformat{\chapter}[block]
+    {\Huge\bfseries}
+    {\hspace{-0.45em}
+    \begin{tikzpicture}
+        \node[shape=circle,draw,inner sep=2pt, fill=crdark] (char) {\textcolor{crhighlight}{\thechapter}};
+        \node[inner sep=0pt, anchor=west] at (0.7,0){\titlefont\color{crdark}\MakeUppercase{#1}};
+    \end{tikzpicture}
+    }
+    {6pt}
+    {} 
+    
+% SET SUBCHAPTER STYLES ETC.
+\titleformat{\section}[block]
+    {\Large\bfseries}
+    {\color{crdark} \thesection \hspace{0.25em} #1}
+    {6pt}
+    {} 
+    
+\titleformat{\subsection}[block]
+    {\large\bfseries}
+    {\color{crdark}\thesubsection \hspace{0.25em} #1}
+    {6pt}
+    {} 
+    
+\titleformat{\subsubsection}[block]
+    {\bfseries}
+    {\color{crdark}\thesubsubsection \hspace{0.25em} #1}
+    {6pt}
+    {} 
+    
+% SET CAPTION STYLES
+% Generic table caption
+\DeclareCaptionFormat{crtablecaption}{
+    \ifthenelse{\equal{#1}{}}
+    { % If 'subcaption' (caption*) 
+        \vspace{0.125em} \\
+        \textcolor{crdark}{\rule{\textwidth}{1mm}} \\
+        \small{\textcolor{black}{ #3}}
+    }{ % If primary caption
+        \tcolorbox[width=\textwidth, colframe=crdark, colback=crdark, sharp corners, left=2pt, right=1pt, bottom=3pt, top=5pt]
+        \Large{\textcolor{crdarktext}{#1 |} \textcolor{white}{#3}}
+        \endtcolorbox 
+        \vspace{-0.5em} \\
+    }
+}
+\DeclareCaptionLabelFormat{crcaptionlabel}{\normalfont\Large{#1 #2}}
+
+% declare the captions
+\captionsetup[table]{format=crtablecaption, labelformat=crcaptionlabel, labelfont=normalfont, textfont=normalfont}
+\captionsetup[figure]{labelfont=bf, textfont={small,normalfont}}

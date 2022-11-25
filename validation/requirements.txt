@@ -1,0 +1,7 @@
+numpy==1.21.0
+pyarrow==7.0.0
+plotly==5.4.0
+scipy==1.7.3
+pandas==1.4.1
+pytest==6.2.5
+# sklearn==1.0.2

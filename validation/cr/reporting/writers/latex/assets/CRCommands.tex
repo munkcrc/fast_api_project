@@ -1,0 +1,54 @@
+% Overview
+\newcounter{ourviewcnt}[chapter]
+\newenvironment{ourview}[1][]{%
+    \tcolorbox[width=\textwidth, colframe=crdark, colback=crdark, sharp corners, left=-1pt, right=-1pt, bottom=-4pt, top=1.75pt]
+    \stepcounter{ourviewcnt}
+    \renewcommand{\theHfigure}{cont.\arabic{ourviewcnt}}
+    \Large{%\hspace{0.10em}
+    \raisebox{0.625em}{
+        \textcolor{crdarktext}{Findings \thechapter.\arabic{ourviewcnt}} \ifthenelse{\equal{#1}{}}{}{\textcolor{crdarktext}{|} \textcolor{white}{#1}}
+    }}
+    \hfill\raisebox{0.25em}{\includesvg[height=1.5em]{Resources/Logos/cr-logo-white.svg}}\hspace{0.25em}
+    \normalsize
+    \tcolorbox[width=\textwidth, colback=crwhite, colframe=crwhite, sharp corners, boxsep=-3pt, left=5pt, right=6pt]
+}{
+    \endtcolorbox
+    \endtcolorbox
+}
+
+% cr Definition
+\newcounter{definitioncnt}[chapter]
+\newenvironment{crdefinition}[1][]{%
+   \tcolorbox[width=\textwidth, colframe=crdarktext, colback=crdarktext, sharp corners, left=-1pt, right=-1pt, bottom=-4pt, top=5.25pt]
+   \stepcounter{definitioncnt}
+   \renewcommand{\theHfigure}{cont.\arabic{definitioncnt}}
+   \Large{\raisebox{0.625em}{
+        \textcolor{crdark}{Assessment criteria \thechapter.\arabic{definitioncnt}} \ifthenelse{\equal{#1}{}}{}{\textcolor{crdark}{|} \textcolor{white}{#1}}
+   }}
+   \tcolorbox[width=\textwidth, colback=crwhite, colframe=crwhite, sharp corners, boxsep=-3pt, left=5pt, right=6pt]
+   \normalfont\normalsize
+}{
+    \endtcolorbox
+    \endtcolorbox
+}
+
+% cr Quote
+\definecolor{crwhite2}{RGB}{232, 232, 232}
+\newfontfamily\quotefont[]{!<ASSET;SECULARONE>!}
+\newcommand*\quotesize{36}
+\newenvironment{crquote}[1][]{%
+    \vspace{0.5em}\par
+   \begin{center}
+   {\tikz[remember picture,overlay, xshift=-1em, yshift=3.75em]
+   \node (OQ) {\quotefont\fontsize{\quotesize}{\quotesize}\selectfont\textcolor{crhighlight}{“}};\kern0pt}
+   \begin{minipage}[t]{0.85\textwidth}
+   \tcolorbox[width=\textwidth, colframe=crwhite, colback=crwhite2]
+   \normalfont\normalsize
+}{
+    \endtcolorbox
+    \end{minipage}
+    {\tikz[remember picture, overlay, xshift=1em, yshift=-0.5em]
+   \node (CQ) {\quotefont\fontsize{\quotesize}{\quotesize}\selectfont\textcolor{crhighlight}{"}};}
+    \end{center}
+    \vspace{0.25em}\par
+}

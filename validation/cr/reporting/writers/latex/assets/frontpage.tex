@@ -1,0 +1,49 @@
+\pagestyle{empty}
+\pagecolor{crwhite}
+
+\hfill%
+\begin{minipage}[t]{0.68\textwidth}
+\fontsize{26pt}{26pt}\selectfont\textcolor{crdark}{\titlefont !<CTX;_TITLE>!}
+\normalsize
+\vskip 0.035in \noindent
+!<CTX;SUMMARY>!
+\end{minipage}
+
+\tikz[remember picture,overlay] \draw [fill=crdark] (current page.north west) rectangle +(0.34\paperwidth,-\paperheight);
+
+% Add CR Logo
+\tikz[remember picture,overlay] 
+\node[anchor=north east, yshift=-2.5em, xshift=-2.5em]
+    at (current page.north east) 
+{
+\includegraphics[width=0.75in]{!<ASSET;CR_LOGO>!}
+};
+
+% Make Node/Text about purpose
+\tikz[remember picture,overlay] 
+\node[draw, align=left, color=crdark, text=crdarktext, anchor=north west, yshift=-10em, xshift=3.5em, text width=14em]
+    at (current page.north west)
+{
+\textbf{Scope} \\
+!<CTX;SCOPE>!
+};
+
+% Make Disclaimer
+\tikz[remember picture,overlay] 
+\node[draw, align=left, color=crdark, text=crdarktext, anchor=west, yshift = 6em, xshift=3.5em, text width=14em]
+    at (current page.west)
+{
+\textbf{Source} \\
+Date: !<CTX;_DATE>! \\
+Report id: !<CTX;_ID>!
+};
+
+% Made Node/Text about authors
+\tikz[remember picture,overlay] 
+\node[draw, align=left, color=crdark, text=crdarktext, anchor=south west, yshift = 3.5em, xshift=3.5em]
+    at (current page.south west)
+{
+\large{\textbf{Author}} \vspace{0.5em}\\ 
+!<CTX;AUTHORS>!
+
+\clearpage
